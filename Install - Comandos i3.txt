@@ -1,0 +1,67 @@
+Tutorial para configurar o i3wm:
+https://www.vivaolinux.com.br/artigo/Introducao-gerenciador-de-janelas-i3
+https://forum.adrenaline.com.br/threads/uma-tentativa-de-introducao-ao-i3wm.691330/
+.
+.
+Video para configurar a barra de status do i3wm:
+https://www.youtube.com/watch?v=0I01WVUcvsQ&ab_channel=TWMLinux-Gabriel
+.
+.
+Site para baixar os scripts para colocar na barra de i3blocks
+https://github.com/vivien/i3blocks
+https://github.com/vivien/i3blocks-contrib
+
+
+.
+.
+
+## Pacotaao ##
+
+
+sudo pacman -Syyu i3-gaps i3blocks i3lock i3exit picom rofi lxappearance-gtk3 lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar polybar-themer
+
+##
+
+#instalando o i3wm
+sudo pacman -S i3-gaps i3blocks i3lock i3status-manjaro i3exit
+
+Outros app p/ instalar:
+
+#Sensores de temp. etc
+sudo pacman -S lm_sensors 
+
+#pacote para verificar informações do cpu
+sudo pacman -S perl
+
+#pacote para deixar o terminal transparente
+sudo pacman -S xcompmgr picom
+
+#pacote para mudar o tema do sistema
+sudo pacman -S lxappearance
+
+#pacote para abrir imagens
+suco pacman -S feh
+
+#pacote de multimidia
+#sudo pacman -S mplayer
+
+
+
+#script para deixar os papeis de parede random
+#!/bin/bash
+while true; do
+    feh --randomize --bg-fill ~/Downloads/scifi/*
+    sleep 600
+done
+
+sh .random_wallpaper.sh &
+nano .i3/config
+exec_always ~/.random_wallpaper.sh
+
+#Themas do i3wm
+
+https://github.com/hoppercomplex/dotfiles/blob/master/config/i3/config
+
+https://www.deviantart.com/icemodding/art/Archlinux-i3wm-i3blocks-termite-v2-861657962
+
+http://dotshare.it/category/wms/i3/
