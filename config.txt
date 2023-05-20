@@ -20,6 +20,7 @@ floating_modifier $super
 # Executa o launch do polybar para mudar o tema
 exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
 
+## ------------------------------------------------------------------------------------------------------ ##
 
 ## BASIC DEFINITIONS
 ## Variaveis
@@ -30,6 +31,24 @@ set $outer_gaps 3
 set $term --no-startup-id xfce4-terminal
 set $lock i3lock
 
+## colores
+set $darker   #080910
+set $dark     #181920
+set $black    #2F343F
+set $darkgray #3B4252
+set $gray     #E7E8EB
+set $white    #F5F6F7
+set $red      #BF616A
+set $orange   #DBAB6B
+set $yellow   #EBCB8B
+set $green    #A3BE8C
+set $cyan     #88C0D0
+set $blue     #91B1D1
+set $darkblue #416181
+set $purple   #B48EAD
+
+
+## ------------------------------------------------------------------------------------------------------ ##
 
 ## GAPS
 # Define a largura da borda e o espaçamento entre as janelas
@@ -37,20 +56,27 @@ for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
-
 ## SET FONT
 font pango: Fira Sans 10
 
 
 ## WINDOW BORDERS
 # Define a cor das bordas
-# class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #f1f1f1
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #ffffff
+# class                  border  backgr  text       indicator  client_border
+client.focused           $white  $black  $white     $cyan      $white
+client.unfocused         $darker $darker $darkblue  $cyan      $darker
+client.focused_inactive  $dark   $dark   $darkblue  $cyan      $dark
+client.urgent            $red    $red    $dark      $cyan      $red
+client.background        $white
+
+# Define a cor das bordas
+# class                  #border #backgr #text  #indicator #child_border
+#client.focused          #4c7899 #285577 #ffffff #2e9ef4   #f1f1f1
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#client.background       #ffffff
 
 
 ##########################
