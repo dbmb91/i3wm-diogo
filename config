@@ -20,7 +20,7 @@ exec_always --no-startup-id ~/.screenlayout/Tela.sh
 #exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --output DP-1 --mode 1920x1080 --right-of HDMI-1
 
 # Executa o launch do polybar para mudar o tema
-exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
+#exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
 
 ## ------------------------------------------------------------------------------------------------------ ##
 
@@ -29,14 +29,14 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
 ## Borda e Espaco entre as janelas - Variaveis
 #smart_gaps on
 #smart_borders on
-set $inner_gaps 8 
-set $outer_gaps 5
+set $inner_gaps 5
+set $outer_gaps -2
 
 ## ------------------------------------------------------------------------------------------------------ ##
 
 ## APPS Variaveis!
 set $google	google-chrome-stable
-set $lock 	i3lock
+#set $lock 	i3lock
 set $term 	xfce4-terminal
 set $thunar 	thunar
 
@@ -61,14 +61,15 @@ set $purple   #B48EAD
 
 ## ------------------------------------------------------------------------------------------------------ ##
 
+## SET FONT
+font monofur: Bold Italic 12
+#font pango: Fira Sans 10
+
 ## GAPS
 # Define a largura da borda e o espaçamento entre as janelas
 for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
-
-## SET FONT
-font pango: Fira Sans 10
 
 
 ## WINDOW BORDERS
@@ -77,18 +78,37 @@ font pango: Fira Sans 10
 client.focused           $white  $black  $white     $white     $white
 client.unfocused         $red 	 $red    $red       $red       $red
 client.focused_inactive  $dark   $dark   $darkblue  $cyan      $dark
-client.urgent            $red    $red    $dark      $cyan      $red
+client.urgent            $red    $red    $dark      $cyan      $re
+
 client.background        $cyan
 
-# Define a cor das bordas
-# class                  #border #backgr #text  #indicator #child_border
-#client.focused          #4c7899 #285577 #ffffff #2e9ef4   #f1f1f1
-#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-#client.urgent           #2f343a #900000 #ffffff #900000   #900000
-#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-#client.background       #ffffff
 
+## Barra de Status i3wm
+bar {
+	position top
+#       status_command exec /usr/bin/net-speed.sh
+#       status_command i3blocks
+        status_command i3status
+
+        strip_workspace_numbers yes|no
+        strip_workspace_name yes|no
+
+        colors {
+                background #000000
+                statusline #FFFFFF
+                separator  #666666
+
+                focused_workspace  #FFFFFF #000000 #FFFFFF
+                active_workspace   #FFFFFF #000000 #FFFFFF
+                inactive_workspace #FFFFFF #000000 #626262
+                urgent_workspace   #FFFFFF #000000 #FF0000
+                binding_mode       #FFFFFF #000000 #FFFFFF
+
+                }
+   	}
+
+
+## -----------------------------------------------------------------------------
 
 ##########################
 ####### KEY BINDS ########
@@ -100,10 +120,9 @@ client.background        $cyan
 bindsym $super+Return exec --no-startup-id $term
 
 #bindsym $super+a
-#bindsym $super+b
+bindsym $super+b exec ~/lock.sh
 #bindsym $super+c
-bindsym $super+d exec --no-startup-id dmenu_run
-#bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindsym $super+d exec "dmenu_run -nf '#FFFFFF' -nb '#222222' -sb '#FFFFFF' -sf '#000000' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
 
 # Thunar 
 bindsym $super+e exec $thunar
@@ -118,9 +137,9 @@ bindsym $super+f exec flameshot gui
 #bindsym $super+k
 
 # Lock screen
-bindsym $super+l exec i3lock -i ~/Imagens/Wallpapers/.jpg
+#bindsym $super+l exec i3lock -i ~/Imagens/Wallpapers/skull.jpg
 
-#bindsym $super+m
+bindsym $super+m exec "rofi -modi drun,run -show drun"
 #bindsym $super+n
 #bindsym $super+o
 #bindsym $super+p
@@ -322,50 +341,29 @@ bindsym ctrl+shift Up resize grow heigth 5 px or 5 ppt
 bindsym ctrl+shift Down resize shrink heigth 5 px or 5 ppt
 
 
-## Barra de Status i3wm
-#bar {
-#	status_command exec /usr/bin/net-speed.sh
-#	status_command i3blocks
-#
-#	#strip_workspace_numbers yes|no
-#	#strip_workspace_name yes|no
-# 		colors {
-#      	background #2f343f
-#      	statusline #FFFFFF
-#      	separator  #666666
-#		focused_workspace  #4C7899 #285577 #FFFFFF
-#		active_workspace   #333333 #222222 #FFFFFF
-#     	inactive_workspace #333333 #222222 #888888
-#      	urgent_workspace   #2F343A #900000 #FFFFFF
-#      	binding_mode      #2F343A #900000 #FFFFFF
-#
-#     		}
-#		}
-
-
 ## AUTOSTART
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+#exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec nitrogen --restore; sleep 1; picom -b
 #exec --no-startup-id conky
 #exec --no-startup-id conky -c ~/.config/conky/conky-shcts
-#exec --no-startup-id desktop-items
-#exec --no-startup-id nm-applet
+exec --no-startup-id desktop-items
+exec --no-startup-id nm-applet
 #exec --no-startup-id pamac-tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id setcursor
 exec_always --no-startup-id numlockx on
 
 ## LINHAS COMENTADAS
 #exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 #exec --no-startup-id xsettingsd &
-#exec --no-startup-id pasystray
-#exec --no-startup-id copyq
+exec --no-startup-id pasystray
+exec --no-startup-id copyq
 #exec --no-startup-id dunst
 #exec --no-startup-id garuda-welcome
-##exec --no-startup-id redshift
+exec --no-startup-id redshift
 #exec blueberry-tray
-#exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
+exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
 # start a terminal #alacritty xfce4-terminal
 
 
