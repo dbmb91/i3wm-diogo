@@ -1,0 +1,5 @@
+## Criar a pasta Down no diretorio ~
+
+mkdir Down
+-------------------------------------
+## Criar a pasta i3status no diretorio .config
