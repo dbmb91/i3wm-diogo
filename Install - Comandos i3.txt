@@ -10,15 +10,75 @@ https://www.youtube.com/watch?v=0I01WVUcvsQ&ab_channel=TWMLinux-Gabriel
 Site para baixar os scripts para colocar na barra de i3blocks
 https://github.com/vivien/i3blocks
 https://github.com/vivien/i3blocks-contrib
-
-
 .
 .
+## Clonando repositorio dbmb91
+git clone https://github.com/dbmb91/i3wm-diogo.git
+
+##-------------------------------------------YAY------------------------------------------------------------------------##
+## Instalando o gerenciador de pacotes YAY
+##Site:
+https://github.com/Jguer/yay
+
+Clonar o pacote "yay.git"
+git clone https://aur.archlinux.org/yay.git
+
+## Executar comando no terminal:
+pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+##----------------------------------------------------------------------------------------------------------------------##
+
+##-------------------------------------------ZSH------------------------------------------------------------------------##
+
+## Site para configuracao so "zsh":
+https://medium.com/tech-notes-and-geek-stuff/install-zsh-on-arch-linux-manjaro-and-make-it-your-default-shell-b0098b756a7a
+
+## Instalação zsh:
+sudo pacman -S zsh
+
+## Oh-My-Zsh e plug-ins
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+## zsh-syntax-highlighting
+git clonehttps://github.com/zsh-users/zsh-syntax-highlighting.git${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+## zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+## zsh-Z
+git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
+
+## fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+## Colar os comando abaixo no final do arquivo .zshrc em "~"
+export FZF_DEFAULT_COMMAND='fdfind --type f'
+export FZF_DEFAULT_OPTS="--layout=reverse --inline-info --height=80%"
+
+## Configurando o Zsh plugins
+
+plugins =(
+    fzf
+    git
+    history-substring-search
+    páginas de manual coloridas
+    zsh-autossugestões
+    zsh-syntax-highlighting
+    zsh-z
+)
+
+## Para tornar o zsh padrao executar:
+chsh -s $(que zsh)
+
+##----------------------------------------------------------------------------------------------------------------------##
+
 
 ## Pacotaao ##
 
 
-sudo pacman -Syyu i3-gaps i3blocks i3lock i3exit picom rofi lxappearance-gtk3 lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar polybar-themer
+sudo pacman -Syyu git make base-devel cmake curl wget picom rofi lxappearance lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar neofetch arandr xfce4-terminal thunar mousepad xdg-user-dirs phodav
+
+yay -S google-chrome polybar polybar-themes-git gvfs ocs-url
 
 ##
 
@@ -42,8 +102,17 @@ sudo pacman -S lxappearance
 #pacote para abrir imagens
 suco pacman -S feh
 
-#pacote de multimidia
-#sudo pacman -S mplayer
+#pacote de mudar resolucao
+sudo pacman -S arandr
+
+## Gerenciador de diretórios:
+sudo pacman -S xdg-user-dirs
+
+##Atualizando gerenciador de diretórios:
+xdg-user-dirs-update
+
+## Compartilhar pasta gnome-box
+sudo pacman -S phodav
 
 
 
