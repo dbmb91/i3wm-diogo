@@ -1,0 +1,384 @@
+#############################################################################################################
+#                                       MY I3WM CUSTOM CONFIG FILE                                          #
+#############################################################################################################
+
+## Tecla Super "Tecla Windows" 
+## Como alternativa, ainda ative "Alt" para arrastar e redimensionar a janela flutuante
+
+set $super 	Mod4
+set $alt 	Mod1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $super
+
+
+## ------------------------------------------AUTO START--------------------------------------------------- ##
+
+## Monitor
+exec_always --no-startup-id ~/.screenlayout/Tela.sh
+#exec --no-startup-id xrandr --output HDMI-1 --mode 1920x1080 --output DP-1 --mode 1920x1080 --right-of HDMI-1
+
+# Executa o launch do polybar para mudar o tema
+#exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
+
+## ------------------------------------------Variaveis---------------------------------------------------- ##
+
+## BASIC DEFINITIONS
+
+## Borda e Espaco entre as janelas - Variaveis
+#smart_gaps on
+#smart_borders on
+set $inner_gaps 5
+set $outer_gaps -2
+
+## ------------------------------------------Variaveis de Programas--------------------------------------- ##
+
+## APPS Variaveis!
+set $anydesk		flatpak run com.anydesk.Anydesk
+set $bar		bar mode toggle
+set $dmenu 		"dmenu_run -nf '#FFFFFF' -nb '#222222' -sb '#FFFFFF' -sf '#000000' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
+set $exit-i3wm 		"i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+set $e-mail		flatpak run org.mozilla.Thunderbird
+set $fullscreen 	fullscreen toggle
+set $google		google-chrome-stable
+set $kill 		kill
+set $lock 		~/lock.sh
+set $menu-rofi		"rofi -modi drun,run -show drun"
+set $restart-i3wm	restart
+set $term 		xfce4-terminal
+set $thunar 		thunar
+set $whats		flatpak run io.github.mimbrero.WhatsAppDesktop
+
+## ------------------------------------------Variaveis de Cores----------------------------------------------- ##
+
+## Cores - Variaveis
+set $darker   		#080910
+set $dark     		#181920
+set $black    		#2F343F
+set $darkgray 		#3B4252
+set $gray     		#E7E8EB
+set $white    		#F5F6F7
+set $red      		#BF616A
+set $orange   		#DBAB6B
+set $yellow   		#EBCB8B
+set $green    		#A3BE8C
+set $cyan     		#88C0D0
+set $blue     		#91B1D1
+set $darkblue 		#416181
+set $purple   		#B48EAD
+
+
+## -------------------------------------------------FONT----------------------------------------------------- ##
+
+## SET FONT
+Font pango: Dejavu Sans Mono Bold Italic 11
+
+## -------------------------------------------------GAPS----------------------------------------------------- ##
+
+## Define a largura da borda e o espaçamento entre as janelas
+
+for_window [class="^.*"] border pixel 2
+gaps inner $inner_gaps
+gaps outer $outer_gaps
+
+
+## Define a cor das bordas
+
+# class                  border  backgr  text       indicator  client_border
+client.focused           $white  $black  $white     $white     $white
+client.unfocused         $red 	 $red    $red       $red       $red
+client.focused_inactive  $dark   $dark   $darkblue  $cyan      $dark
+client.urgent            $red    $red    $dark      $cyan      $red
+
+client.background        $cyan
+
+
+## Barra de Status i3wm
+
+bar {
+	position top
+#       status_command exec
+#       status_command i3blocks
+        status_command i3status
+
+        strip_workspace_numbers yes|no
+        strip_workspace_name yes|no
+
+        colors {
+                background #000000
+                statusline #FFFFFF
+                separator  #666666
+
+                focused_workspace  #FFFFFF #000000 #FFFFFF
+                active_workspace   #FFFFFF #000000 #FFFFFF
+                inactive_workspace #FFFFFF #000000 #626262
+                urgent_workspace   #FFFFFF #000000 #FF0000
+                binding_mode       #FFFFFF #000000 #FFFFFF
+
+                }
+   	}
+
+
+## -----------------------------------------------KEY BINDS------------------------------------------------------- ##
+
+## $SUPER + TECLA ESPECIAL
+bindsym $super+Return exec 	$term
+
+
+## $SUPER + LETRA
+
+#bindsym $super+a
+#bindsym $super+b exec
+#bindsym $super+c
+bindsym $super+d exec		$dmenu  
+bindsym $super+e exec		$thunar
+bindsym $super+f 		$fullscreen
+#bindsym $super+g exec
+#bindsym $super+f exec
+#bindsym $super+i
+#bindsym $super+j
+#bindsym $super+k
+#bindsym $super+l exec
+bindsym $super+m exec 		$menu-rofi 
+#bindsym $super+n
+bindsym $super+o		$bar 
+#bindsym $super+p
+bindsym $super+q		$kill 
+#bindsym $super+r
+#bindsym $super+s
+#bindsym $super+t exec
+#bindsym $super+u
+#bindsym $super+v
+bindsym $super+x mode 		"$mode_system"
+#bindsym $super+w
+#bindsym $super+y
+#bindsym $super+z
+
+## CTRL + $ALT + LETRA
+
+bindsym ctrl+$alt+a exec 	$anydesk
+#bindsym ctrl+$alt+b
+#bindsym ctrl+$alt+c
+#bindsym ctrl+$alt+d
+#bindsym ctrl+$alt+e
+#bindsym ctrl+$alt+f
+bindsym ctrl+$alt+g exec	$google
+#bindsym ctrl+$alt+h
+#bindsym ctrl+$alt+i
+#bindsym ctrl+$alt+f
+#bindsym ctrl+$alt+k
+bindsym ctrl+$alt+l exec 	$lock
+#bindsym ctrl+$alt+m
+#bindsym ctrl+$alt+n
+#bindsym ctrl+$$alt+o
+#bindsym ctrl+$alt+p
+#bindsym ctrl+$alt+q
+#bindsym ctrl+$alt+r
+#bindsym ctrl+$alt+s
+bindsym ctrl+$alt+t exec	$e-mail
+#bindsym ctrl+$alt+u
+#bindsym ctrl+$alt+v
+#bindsym ctrl+$alt+x
+bindsym ctrl+$alt+w exec 	$whats
+#bindsym ctrl+$alt+y
+#bindsym ctrl+$alt+z
+
+## SUPER + F1 ~ F12
+
+#bindsym $super+f1
+#bindsym $super+f2
+#bindsym $super+f3
+#bindsym $super+f4
+#bindsym $super+f5
+#bindsym $super+f6
+#bindsym $super+f7
+#bindsym $super+f8
+#bindsym $super+f9
+#bindsym $super+f10
+#bindsym $super+f11 
+#bindsym $super+f12
+
+## SUPER + SHIFT + LETRA
+
+#bindsym $super+shift+a
+#bindsym $super+shift+b
+#bindsym $super+shift+c
+#bindsym $super+shift+d
+#bindsym $super+shift+e
+#bindsym $super+shift+f
+#bindsym $super+shift+g
+#bindsym $super+shift+h
+#bindsym $super+shift+i
+#bindsym $super+shift+j
+#bindsym $super+shift+k
+#bindsym $super+shift+l
+#bindsym $super+shift+m
+#bindsym $super+shift+n
+#bindsym $super+shift+o
+#bindsym $super+shift+p
+bindsym $super+shift+q exec 		$exit-i3wm
+bindsym $super+shift+r			$restart-i3wm	
+#bindsym $super+shift+s
+#bindsym $super+shift+t
+#bindsym $super+shift+u
+#bindsym $super+shift+v
+#bindsym $super+shift+x
+#bindsym $super+shift+w
+#bindsym $super+shift+y
+#bindsym $super+shift+z
+
+
+## -----------------------------------------------Volume--------------------------------------------------- ##
+
+## VOLUME DO SISTEMA
+
+## change volume
+bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
+bindsym XF86AudioMute exec pulseaudio-ctl mute
+#bindsym XF86AudioMute exec amixer pulseaudio-ctl mute
+
+## music control
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl prev
+bindsym XF86AudioPlay exec playerctl toggle
+bindsym XF86AudioStop exec playerctl stop
+
+## Screen brightness controls
+#bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+#bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+
+
+## -----------------------------------------------Windows------------------------------------------------- ##
+
+## WINDOWS FOCUS
+
+## Mover o Cursor da janela
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Rigth focus rigth
+
+## Orientacao da janelas
+bindsym $super+space split toggle
+
+# change focus between tiling / floating windows
+# semicolon = ;
+bindsym $super+semicolon focus mode_toggle
+
+# toggle tiling / floating
+bindsym $super+shift+space floating toggle
+
+# focus the parent container
+bindsym $super+a focus parent
+
+
+## Mudar o layout das janelas
+bindsym $super+shift+question layout toggle all
+
+## Deixar o layout por padrão
+## opções = tabbed, stacking, toggle split
+workspace_layout default
+
+
+#navigate workspaces next / previous
+bindsym $super+Ctrl+Right workspace next
+bindsym $super+Ctrl+Left workspace prev
+
+
+# switch to workspace
+bindsym $alt+Control+Right workspace next
+bindsym $alt+Control+Left workspace prev
+bindsym $super+1 workspace 1
+bindsym $super+2 workspace 2
+bindsym $super+3 workspace 3
+bindsym $super+4 workspace 4
+bindsym $super+5 workspace 5
+bindsym $super+6 workspace 6
+bindsym $super+7 workspace 7
+bindsym $super+8 workspace 8
+
+# move focused container to workspace
+bindsym $super+Shift+1 move container to workspace 1
+bindsym $super+Shift+2 move container to workspace 2
+bindsym $super+Shift+3 move container to workspace 3
+bindsym $super+Shift+4 move container to workspace 4
+bindsym $super+Shift+5 move container to workspace 5
+bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Shift+7 move container to workspace 7
+bindsym $super+Shift+8 move container to workspace 8
+
+# Move to workspace with focused container
+bindsym $alt+Shift+1 move container to workspace 1; workspace 1
+bindsym $alt+Shift+2 move container to workspace 2; workspace 2
+bindsym $alt+Shift+3 move container to workspace 3; workspace 3
+bindsym $alt+Shift+4 move container to workspace 4; workspace 4
+bindsym $alt+Shift+5 move container to workspace 5; workspace 5
+bindsym $alt+Shift+6 move container to workspace 6; workspace 6
+bindsym $alt+Shift+7 move container to workspace 7; workspace 7
+bindsym $alt+Shift+8 move container to workspace 8; workspace 8
+
+
+## Alterar o tamanho da Janela
+bindsym ctrl+shift Rigth resize grow width 5 px or 5 ppt
+bindsym ctrl+shift Left resize shrink width 5 px or 5 ppt
+bindsym ctrl+shift Up resize grow heigth 5 px or 5 ppt
+bindsym ctrl+shift Down resize shrink heigth 5 px or 5 ppt
+
+## ------------------------------------------AUTO START--------------------------------------------------- ##
+
+## AUTOSTART
+
+exec nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id desktop-items
+exec --no-startup-id nm-applet
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id xfce4-power-manager
+exec_always --no-startup-id setcursor
+exec_always --no-startup-id numlockx on
+exec --no-startup-id pasystray
+exec --no-startup-id copyq
+
+
+## ------------------------------------------LINHAS COMENTADAS------------------------------------------- ##
+
+## LINHAS COMENTADAS
+#exec --no-startup-id conky
+#exec --no-startup-id conky -c ~/.config/conky/conky-shcts
+#exec --no-startup-id pamac-tray
+#exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+#exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
+#exec --no-startup-id xsettingsd &
+exec --no-startup-id redshift
+#exec --no-startup-id dunst
+#exec --no-startup-id garuda-welcome
+#exec --no-startup-id redshift
+#exec blueberry-tray
+#exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
+# start a terminal #alacritty xfce4-terminal
+
+
+## ---------------------------------------------SHUTDOWN------------------------------------------------ ##
+
+## SET SHUTDOWN RESTART AND LOCKING FEATURES
+## Bind para executar o comando abaixo:
+## $super+x
+
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+## ------------------------------------------------------------------------------------------------------ ##
+
+
