@@ -40,15 +40,16 @@ set $e-mail		flatpak run org.mozilla.Thunderbird
 set $fullscreen 	fullscreen toggle
 set $flutuante		floating toggle
 set $fullLayout		layout toggle all
-set $google		google-chrome-stable
+#set $google		google-chrome-stable
+set $google		com.google.Chrome
 set $kill 		kill
-set $lock 		~/lock.sh
+set $lock 		~/.config/i3/script/lock.sh
 set $menu-rofi		"rofi -modi drun,run -show drun"
 set $restart-i3wm	restart
 set $term 		xfce4-terminal
 set $thunar 		thunar
 set $vert-horin         split toggle
-set $wallpapers 	~/random_wallpaper.sh
+set $wallpapers 	~/.config/i3/script/random_wallpaper.sh
 set $whats		flatpak run io.github.mimbrero.WhatsAppDesktop
 
 ## ------------------------------------------Variaveis de Cores----------------------------------------------- ##
@@ -88,9 +89,9 @@ gaps outer $outer_gaps
 
 # class                  border  backgr  text       indicator  client_border
 client.focused           $white  $black  $white     $white     $white
-client.unfocused         $white  $black  $white     $red       $black
-client.focused_inactive  $dark   $dark   $dark      $cyan      $dark
-client.urgent            $red    $red    $dark      $cyan      $red
+client.unfocused         $white  $black  $white     $black     $black
+client.focused_inactive  $white   $dark   $white    $cyan      $dark
+client.urgent            $red    $red    $white     $cyan      $red
 
 client.background        $cyan
 
@@ -131,59 +132,59 @@ bindsym $alt+ctrl+question 	$fullLayout
 
 
 ## $SUPER + LETRA
-bindsym $super+a 		$selectAll
+bindsym $super+a 				$selectAll
 #bindsym $super+b exec
 #bindsym $super+c
-bindsym $super+d exec		$dmenu  
+bindsym $super+d exec				$dmenu  
 bindsym $super+e exec --no-startup-id 		$thunar
-bindsym $super+f 		$fullscreen
+bindsym $super+f 				$fullscreen
 #bindsym $super+g exec
 #bindsym $super+f exec
 #bindsym $super+i
 #bindsym $super+j
 #bindsym $super+k
 #bindsym $super+l exec
-bindsym $super+m exec 		$menu-rofi 
-#bindsym $super+n
-bindsym $super+o		$bar 
+bindsym $super+m exec 				$menu-rofi 
+#bindsym $super+n	
+bindsym $super+o				$bar 
 #bindsym $super+p
-bindsym $super+q		$kill 
+bindsym $super+q				$kill 
 #bindsym $super+r
 #bindsym $super+s
 #bindsym $super+t exec
 #bindsym $super+u
 #bindsym $super+v
-bindsym $super+x mode 		"$mode_system"
+bindsym $super+x mode 				"$mode_system"
 #bindsym $super+w
 #bindsym $super+y
 #bindsym $super+z
 
 ## CTRL + $ALT + LETRA
 
-bindsym ctrl+$alt+a exec 	$anydesk
+bindsym ctrl+$alt+a exec 			$anydesk
 #bindsym ctrl+$alt+b
 #bindsym ctrl+$alt+c
 #bindsym ctrl+$alt+d
 #bindsym ctrl+$alt+e
 #bindsym ctrl+$alt+f
-bindsym ctrl+$alt+g exec	$google
+bindsym ctrl+$alt+g exec			$google
 #bindsym ctrl+$alt+h
 #bindsym ctrl+$alt+i
 #bindsym ctrl+$alt+f
 #bindsym ctrl+$alt+k
-bindsym ctrl+$alt+l exec 	$lock
+bindsym ctrl+$alt+l exec 			$lock
 #bindsym ctrl+$alt+m
-bindsym ctrl+$alt+n exec 	$wallpapers
+bindsym ctrl+$alt+n exec 			$wallpapers
 #bindsym ctrl+$$alt+o
 #bindsym ctrl+$alt+p
 #bindsym ctrl+$alt+q
 #bindsym ctrl+$alt+r
 #bindsym ctrl+$alt+s
-bindsym ctrl+$alt+t exec	$e-mail
+bindsym ctrl+$alt+t exec			$e-mail
 #bindsym ctrl+$alt+u
 #bindsym ctrl+$alt+v
 #bindsym ctrl+$alt+x
-bindsym ctrl+$alt+w exec 	$whats
+bindsym ctrl+$alt+w exec 			$whats
 #bindsym ctrl+$alt+y
 #bindsym ctrl+$alt+z
 
@@ -220,8 +221,8 @@ bindsym ctrl+$alt+w exec 	$whats
 #bindsym $super+shift+n
 #bindsym $super+shift+o
 #bindsym $super+shift+p
-bindsym $super+shift+q exec 		$exit-i3wm
-bindsym $super+shift+r			$restart-i3wm	
+bindsym $super+shift+q exec 			$exit-i3wm
+bindsym $super+shift+r				$restart-i3wm	
 #bindsym $super+shift+s
 #bindsym $super+shift+t
 #bindsym $super+shift+u
@@ -260,12 +261,17 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $super
 
-## Mover o Cursor da janela
-bindsym $super+Left 	focus left
+## Move o Foco das janelas
+bindsym $super+Left	focus left
 bindsym $super+Down 	focus down
 bindsym $super+Up   	focus up
 bindsym $super+Right	focus right
 
+## Move a posicao das janelas
+bindsym $alt+ctrl+Left 	move left
+bindsym $alt+ctrl+Down 	move down
+bindsym $alt+ctrl+Up 	move up
+bindsym $alt+ctrl+Right move right
 
 ## Deixar o layout por padrão
 ## opções = tabbed, stacking, toggle split
@@ -273,45 +279,76 @@ workspace_layout default
 
 
 #navigate workspaces next / previous
-bindsym $super+Ctrl+Right workspace next
-bindsym $super+Ctrl+Left workspace prev
+#bindsym $super+Ctrl+Right workspace next
+#bindsym $super+Ctrl+Left workspace prev
 
 # switch to workspace
-bindsym $alt+Control+Right workspace next
-bindsym $alt+Control+Left workspace prev
+bindsym $super+ctrl+Right workspace next
+bindsym $super+ctrl+Left  workspace prev
 
-bindsym $super+1 workspace 1
-bindsym $super+2 workspace 2
-bindsym $super+3 workspace 3
-bindsym $super+4 workspace 4
-bindsym $super+5 workspace 5
-bindsym $super+6 workspace 6
-bindsym $super+7 workspace 7
-bindsym $super+8 workspace 8
+
+
+#for_window [class="spotify"] move container to workspace $ws2
+
+## Regras de aplicativos para abrir em suas workspaces
+
+assign [class="Xfce4-terminal"] workspace $ws1
+assign [class="Thunar"] workspace $ws2
+assign [class="Mousepad"] workspace $ws3
+
+
+## -----------------------------------------------Variaveis Workspaces------------------------------------- ##
+
+## Variaveis Workspaces
+set $ws1 ""
+set $ws2 ""
+set $ws3 ""
+set $ws4 ""
+set $ws5 ""
+set $ws6 ""
+set $ws7 ""
+set $ws8 ""
+set $ws9 "" 
+set $ws0 ""
+
+bindsym $super+1 workspace $ws1
+bindsym $super+2 workspace $ws2
+bindsym $super+3 workspace $ws3
+bindsym $super+4 workspace $ws4
+bindsym $super+5 workspace $ws5
+bindsym $super+6 workspace $ws6
+bindsym $super+7 workspace $ws7
+bindsym $super+8 workspace $ws8
+bindsym $super+9 workspace $ws9
+bindsym $super+0 workspace $ws0
 
 # move focused container to workspace
-bindsym $super+Shift+1 move container to workspace 1
-bindsym $super+Shift+2 move container to workspace 2
-bindsym $super+Shift+3 move container to workspace 3
-bindsym $super+Shift+4 move container to workspace 4
-bindsym $super+Shift+5 move container to workspace 5
-bindsym $super+Shift+6 move container to workspace 6
-bindsym $super+Shift+7 move container to workspace 7
-bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+1 move container to workspace $ws1
+bindsym $super+Shift+2 move container to workspace $ws2
+bindsym $super+Shift+3 move container to workspace $ws3
+bindsym $super+Shift+4 move container to workspace $ws4
+bindsym $super+Shift+5 move container to workspace $ws5
+bindsym $super+Shift+6 move container to workspace $ws6
+bindsym $super+Shift+7 move container to workspace $ws7
+bindsym $super+Shift+8 move container to workspace $ws8
+bindsym $super+Shift+9 move container to workspace $ws9
+bindsym $super+Shift+0 move container to workspace $ws0
 
 # Move to workspace with focused container
-bindsym $alt+Shift+1 move container to workspace 1; workspace 1
-bindsym $alt+Shift+2 move container to workspace 2; workspace 2
-bindsym $alt+Shift+3 move container to workspace 3; workspace 3
-bindsym $alt+Shift+4 move container to workspace 4; workspace 4
-bindsym $alt+Shift+5 move container to workspace 5; workspace 5
-bindsym $alt+Shift+6 move container to workspace 6; workspace 6
-bindsym $alt+Shift+7 move container to workspace 7; workspace 7
-bindsym $alt+Shift+8 move container to workspace 8; workspace 8
+bindsym $alt+Shift+1 move container to workspace 1; workspace $ws1
+bindsym $alt+Shift+2 move container to workspace 2; workspace $ws2
+bindsym $alt+Shift+3 move container to workspace 3; workspace $ws3
+bindsym $alt+Shift+4 move container to workspace 4; workspace $ws4
+bindsym $alt+Shift+5 move container to workspace 5; workspace $ws5
+bindsym $alt+Shift+6 move container to workspace 6; workspace $ws6
+bindsym $alt+Shift+7 move container to workspace 7; workspace $ws7
+bindsym $alt+Shift+8 move container to workspace 8; workspace $ws8
+bindsym $alt+Shift+9 move container to workspace 9; workspace $ws9
+bindsym $alt+Shift+0 move container to workspace 0; workspace $ws0
 
 
 ## Alterar o tamanho da Janela
-bindsym ctrl+shift Rigth resize grow width 5 px or 5 ppt
+bindsym ctrl+shift Right resize grow width 5 px or 5 ppt
 bindsym ctrl+shift Left resize shrink width 5 px or 5 ppt
 bindsym ctrl+shift Up resize grow heigth 5 px or 5 ppt
 bindsym ctrl+shift Down resize shrink heigth 5 px or 5 ppt
@@ -319,17 +356,16 @@ bindsym ctrl+shift Down resize shrink heigth 5 px or 5 ppt
 ## ------------------------------------------AUTO START--------------------------------------------------- ##
 
 ## AUTOSTART
-exec_always ~/random_wallpaper.sh
-exec nitrogen --restore; sleep 1; picom -b
-exec --no-startup-id desktop-items
+exec --no-startup-id copyq
+exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id xfce4-power-manager
+exec_always ~/.config/i3/script/random_wallpaper.sh
+exec --no-startup-id desktop-items
 exec_always --no-startup-id setcursor
 exec_always --no-startup-id numlockx on
-exec --no-startup-id pasystray
-exec --no-startup-id copyq
-
+exec --no-startup-id xfce4-power-manager
+exec nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 ## ------------------------------------------LINHAS COMENTADAS------------------------------------------- ##
 
@@ -340,7 +376,7 @@ exec --no-startup-id copyq
 #exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 #exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 #exec --no-startup-id xsettingsd &
-exec --no-startup-id redshift
+#exec --no-startup-id redshift
 #exec --no-startup-id dunst
 #exec --no-startup-id garuda-welcome
 #exec --no-startup-id redshift
