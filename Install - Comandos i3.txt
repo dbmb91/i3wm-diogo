@@ -72,11 +72,20 @@ chsh -s $(que zsh)
 
 ##----------------------------------------------------------------------------------------------------------------------##
 
+## Link dos themas archcraft
+## Themas:
+curl -s https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/temas.sh | bash
+
+## Icons
+curl -s https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/icones.sh | bash
+
+##----------------------------------------------------------------------------------------------------------------------##
+
 
 ## Pacotaao ##
 
 
-sudo pacman -Syyu git make base-devel cmake curl wget picom rofi lxappearance lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar neofetch arandr xfce4-terminal thunar mousepad xdg-user-dirs phodav
+sudo pacman -Syyu copyq pasystray git make base-devel cmake curl wget picom rofi lxappearance lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar neofetch arandr xfce4-terminal thunar mousepad xdg-user-dirs phodav
 
 yay -S google-chrome polybar polybar-themes-git gvfs ocs-url
 
