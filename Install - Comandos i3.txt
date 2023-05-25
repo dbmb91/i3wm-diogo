@@ -23,6 +23,8 @@ https://github.com/Jguer/yay
 Clonar o pacote "yay.git"
 git clone https://aur.archlinux.org/yay.git
 
+yay -Y gendb
+
 ## Executar comando no terminal:
 pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 ##----------------------------------------------------------------------------------------------------------------------##
@@ -39,7 +41,7 @@ sudo pacman -S zsh
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ## zsh-syntax-highlighting
-git clonehttps://github.com/zsh-users/zsh-syntax-highlighting.git${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 ## zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -68,7 +70,7 @@ plugins =(
 )
 
 ## Para tornar o zsh padrao executar:
-chsh -s $(que zsh)
+chsh -s $(which zsh)
 
 ##----------------------------------------------------------------------------------------------------------------------##
 
@@ -79,13 +81,28 @@ curl -s https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/tem
 ## Icons
 curl -s https://raw.githubusercontent.com/thespation/dpux_bspwm/main/scripts/icones.sh | bash
 
+## Theme grafite
+https://github.com/vinceliuice/Graphite-gtk-theme
+
+## icones black
+https://github.com/vinceliuice/Tela-circle-icon-theme
+
+## Cursor Babita
+https://github.com/ful1e5/Bibata_Cursor
+https://www.gnome-look.org/p/1197198
+
+## icones de terminal
+https://github.com/sebastiencs/icons-in-terminal
+
 ##----------------------------------------------------------------------------------------------------------------------##
 
 
 ## Pacotaao ##
 
 
-sudo pacman -Syyu copyq pasystray git make base-devel cmake curl wget picom rofi lxappearance lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar neofetch arandr xfce4-terminal thunar mousepad xdg-user-dirs phodav
+sudo pacman -Syyuu gtk-engines polkit-gnome ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer fwupd copyq pasystray git make base-devel cmake curl wget picom rofi lxappearance lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar neofetch arandr xfce4-terminal thunar mousepad xdg-user-dirs phodav
+
+sudo pacman-S flatpak
 
 yay -S google-chrome polybar polybar-themes-git gvfs ocs-url
 
