@@ -100,11 +100,11 @@ https://github.com/sebastiencs/icons-in-terminal
 ## Pacotaao ##
 
 
-sudo pacman -Syyuu gtk-engines polkit-gnome ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer fwupd copyq pasystray git make base-devel cmake curl wget picom rofi lxappearance lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar neofetch arandr xfce4-terminal thunar mousepad xdg-user-dirs phodav
+sudo pacman -Syyuu speedtest-cli gtk-engines polkit-gnome ffmpeg gst-plugins-ugly gst-plugins-good gst-plugins-base gst-plugins-bad gst-libav gstreamer fwupd copyq pasystray git make base-devel cmake curl wget picom rofi lxappearance lxsession lm_sensors perl xcompmgr feh nitrogen zsh polybar neofetch arandr xfce4-terminal thunar mousepad xdg-user-dirs phodav
 
 sudo pacman-S flatpak
 
-yay -S google-chrome polybar polybar-themes-git gvfs ocs-url
+yay -S google-chrome polybar polybar-themes-git gvfs ocs-url sysstat
 
 ##
 
