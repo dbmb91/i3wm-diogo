@@ -17,7 +17,7 @@ exec_always --no-startup-id ~/.screenlayout/Tela.sh
 # Executa o launch do polybar para mudar o tema
 #exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
 
-## ------------------------------------------Variaveis---------------------------------------------------- ##
+## ------------------------------------------Variaveis-------------------------------------------------------- ##
 
 ## BASIC DEFINITIONS
 
@@ -27,7 +27,7 @@ exec_always --no-startup-id ~/.screenlayout/Tela.sh
 set $inner_gaps 5
 set $outer_gaps -2
 
-## ------------------------------------------Variaveis de Programas--------------------------------------- ##
+## ------------------------------------------Variaveis de Programas-------------------------------------------- ##
 
 ## APPS Variaveis!
 
