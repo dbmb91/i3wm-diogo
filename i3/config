@@ -100,9 +100,10 @@ client.background        $cyan
 
 bar {
 	position top
+	#i3bar_command i3bar --transparency
 #       status_command exec
-#       status_command i3blocks
-        status_command i3status
+        status_command i3blocks
+        #status_command i3status
 
         strip_workspace_numbers yes|no
         strip_workspace_name yes|no
@@ -121,21 +122,21 @@ bar {
                 }
    	}
 
-
 ## -----------------------------------------------KEY BINDS------------------------------------------------------- ##
 
 ## $SUPER + TECLA ESPECIAL
-bindsym $super+Return exec 	$term
-bindsym $super+space 		$vert-horin
-bindsym $alt+ctrl space 	$flutuante
-bindsym $alt+ctrl+question 	$fullLayout
+bindsym $super+Return exec --no-startup-id	$term
+bindsym $super+space 				$vert-horin
+bindsym $alt+ctrl space 			$flutuante
+bindsym $alt+ctrl+question 			$fullLayout
 
+## --------------------------------------------------------------------------------------------------------------- ##
 
 ## $SUPER + LETRA
 bindsym $super+a 				$selectAll
 #bindsym $super+b exec
 #bindsym $super+c
-bindsym $super+d exec				$dmenu  
+bindsym $super+d exec --no-startup-id		$dmenu  
 bindsym $super+e exec --no-startup-id 		$thunar
 bindsym $super+f 				$fullscreen
 #bindsym $super+g exec
@@ -144,7 +145,7 @@ bindsym $super+f 				$fullscreen
 #bindsym $super+j
 #bindsym $super+k
 #bindsym $super+l exec
-bindsym $super+m exec 				$menu-rofi 
+bindsym $super+m exec --no-startup-id		$menu-rofi 
 #bindsym $super+n	
 bindsym $super+o				$bar 
 #bindsym $super+p
@@ -159,37 +160,39 @@ bindsym $super+x mode 				"$mode_system"
 #bindsym $super+y
 #bindsym $super+z
 
-## CTRL + $ALT + LETRA
+## --------------------------------------------------------------------------------------------------------------- ##
 
-bindsym ctrl+$alt+a exec 			$anydesk
+## CTRL + $ALT + LETRA
+bindsym ctrl+$alt+a exec --no-startup-id	$anydesk
 #bindsym ctrl+$alt+b
 #bindsym ctrl+$alt+c
 #bindsym ctrl+$alt+d
 #bindsym ctrl+$alt+e
 #bindsym ctrl+$alt+f
-bindsym ctrl+$alt+g exec			$google
+bindsym ctrl+$alt+g exec --no-startup-id	$google
 #bindsym ctrl+$alt+h
 #bindsym ctrl+$alt+i
 #bindsym ctrl+$alt+f
 #bindsym ctrl+$alt+k
-bindsym ctrl+$alt+l exec 			$lock
+bindsym ctrl+$alt+l exec --no-startup-id	$lock
 #bindsym ctrl+$alt+m
-bindsym ctrl+$alt+n exec 			$wallpapers
-#bindsym ctrl+$$alt+o
+bindsym ctrl+$alt+n exec --no-startup-id	$wallpapers
+#bindsym ctrl+$alt+o
 #bindsym ctrl+$alt+p
 #bindsym ctrl+$alt+q
 #bindsym ctrl+$alt+r
 #bindsym ctrl+$alt+s
-bindsym ctrl+$alt+t exec			$e-mail
+bindsym ctrl+$alt+t exec --no-startup-id	$e-mail
 #bindsym ctrl+$alt+u
 #bindsym ctrl+$alt+v
 #bindsym ctrl+$alt+x
-bindsym ctrl+$alt+w exec 			$whats
+bindsym ctrl+$alt+w exec --no-startup-id	$whats
 #bindsym ctrl+$alt+y
 #bindsym ctrl+$alt+z
 
-## SUPER + F1 ~ F12
+## --------------------------------------------------------------------------------------------------------------- ##
 
+## SUPER + F1 ~ F12
 #bindsym $super+f1
 #bindsym $super+f2
 #bindsym $super+f3
@@ -203,8 +206,9 @@ bindsym ctrl+$alt+w exec 			$whats
 #bindsym $super+f11 
 #bindsym $super+f12
 
-## SUPER + SHIFT + LETRA
+## --------------------------------------------------------------------------------------------------------------- ##
 
+## SUPER + SHIFT + LETRA
 #bindsym $super+shift+a
 #bindsym $super+shift+b
 #bindsym $super+shift+c
@@ -221,7 +225,7 @@ bindsym ctrl+$alt+w exec 			$whats
 #bindsym $super+shift+n
 #bindsym $super+shift+o
 #bindsym $super+shift+p
-bindsym $super+shift+q exec 			$exit-i3wm
+bindsym $super+shift+q exec  			$exit-i3wm
 bindsym $super+shift+r				$restart-i3wm	
 #bindsym $super+shift+s
 #bindsym $super+shift+t
@@ -232,8 +236,7 @@ bindsym $super+shift+r				$restart-i3wm
 #bindsym $super+shift+y
 #bindsym $super+shift+z
 
-
-## -----------------------------------------------Volume--------------------------------------------------- ##
+## -----------------------------------------------Volume----------------------------------------------------------- ##
 
 ## VOLUME DO SISTEMA
 
@@ -254,7 +257,7 @@ bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 
-## -----------------------------------------------Windows------------------------------------------------- ##
+## -----------------------------------------------Windows--------------------------------------------------------- ##
 
 ## WINDOWS FOCUS
 
@@ -263,20 +266,19 @@ floating_modifier $super
 
 ## Move o Foco das janelas
 bindsym $super+Left	focus left
-bindsym $super+Down 	focus down
-bindsym $super+Up   	focus up
+bindsym $super+Down 	focus up
+bindsym $super+Up   	focus down
 bindsym $super+Right	focus right
 
 ## Move a posicao das janelas
 bindsym $alt+ctrl+Left 	move left
-bindsym $alt+ctrl+Down 	move down
-bindsym $alt+ctrl+Up 	move up
+bindsym $alt+ctrl+Down 	move up
+bindsym $alt+ctrl+Up 	move down
 bindsym $alt+ctrl+Right move right
 
 ## Deixar o layout por padrão
 ## opções = tabbed, stacking, toggle split
 workspace_layout default
-
 
 #navigate workspaces next / previous
 #bindsym $super+Ctrl+Right workspace next
@@ -286,30 +288,28 @@ workspace_layout default
 bindsym $super+ctrl+Right workspace next
 bindsym $super+ctrl+Left  workspace prev
 
+## -----------------------------------------------Variaveis Workspaces--------------------------------------------- ##
 
-
-#for_window [class="spotify"] move container to workspace $ws2
+## Variaveis Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9" 
 
 ## Regras de aplicativos para abrir em suas workspaces
 
-assign [class="Xfce4-terminal"] workspace $ws1
-assign [class="Thunar"] workspace $ws2
-assign [class="Mousepad"] workspace $ws3
+#focus_on_window_activation focus
 
-
-## -----------------------------------------------Variaveis Workspaces------------------------------------- ##
-
-## Variaveis Workspaces
-set $ws1 ""
-set $ws2 ""
-set $ws3 ""
-set $ws4 ""
-set $ws5 ""
-set $ws6 ""
-set $ws7 ""
-set $ws8 ""
-set $ws9 "" 
-set $ws0 ""
+assign [class="^Xfce4-terminal$"] workspace $ws1 for_window [class="^Xfce4-terminal$"]	focus
+assign [class="^Thunar$"] 	  workspace $ws2 for_window [class="^Thunar$"] 		focus
+assign [class="^Mousepad$"] 	  workspace $ws3 for_window [class="^Mousepad$"]	focus
+assign [class="^Google-chrome$"]  workspace $ws4 for_window [class="^Google-chrome$"]	focus
+#for_window [class="spotify"] move container to workspace $ws0
 
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
@@ -346,28 +346,36 @@ bindsym $alt+Shift+8 move container to workspace 8; workspace $ws8
 bindsym $alt+Shift+9 move container to workspace 9; workspace $ws9
 bindsym $alt+Shift+0 move container to workspace 0; workspace $ws0
 
+## Utiliza a mesma tecla para voltar a workspace anterior
+workspace_auto_back_and_forth yes
 
 ## Alterar o tamanho da Janela
-bindsym ctrl+shift Right resize grow width 5 px or 5 ppt
-bindsym ctrl+shift Left resize shrink width 5 px or 5 ppt
-bindsym ctrl+shift Up resize grow heigth 5 px or 5 ppt
-bindsym ctrl+shift Down resize shrink heigth 5 px or 5 ppt
+#mode "resize" {
+bindsym ctrl+shift Right	resize shrink	width	5 px or 5 ppt
+bindsym ctrl+shift Up		resize grow	height	5 px or 5 ppt
+bindsym ctrl+shift Down		resize shrink	height	5 px or 5 ppt
+bindsym ctrl+shift Left		resize grow	width	5 px or 5 ppt
 
-## ------------------------------------------AUTO START--------------------------------------------------- ##
+# exit system mode: "Enter" or "Escape"
+#bindsym Return mode "default"
+#bindsym Escape mode "default"
+#}
+
+## ------------------------------------------AUTO START---------------------------------------------------------------- ##
 
 ## AUTOSTART
 exec --no-startup-id copyq
 exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
-exec_always ~/.config/i3/script/random_wallpaper.sh
 exec --no-startup-id desktop-items
 exec_always --no-startup-id setcursor
 exec_always --no-startup-id numlockx on
 exec --no-startup-id xfce4-power-manager
-exec nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec_always --no-startup-id ~/.config/i3/script/random_wallpaper.sh
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-## ------------------------------------------LINHAS COMENTADAS------------------------------------------- ##
+## ------------------------------------------LINHAS COMENTADAS--------------------------------------------------------- ##
 
 ## LINHAS COMENTADAS
 #exec --no-startup-id conky
@@ -385,7 +393,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # start a terminal #alacritty xfce4-terminal
 
 
-## ---------------------------------------------SHUTDOWN------------------------------------------------ ##
+## ---------------------------------------------SHUTDOWN------------------------------------------------------------- ##
 
 ## SET SHUTDOWN RESTART AND LOCKING FEATURES
 ## Bind para executar o comando abaixo:
@@ -401,11 +409,8 @@ mode "$mode_system" {
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
 }
 
-## ------------------------------------------------------------------------------------------------------ ##
+## ------------------------------------------------------------------------------------------------------------------ ##
 
 
