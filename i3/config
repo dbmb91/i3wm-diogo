@@ -17,7 +17,7 @@ exec_always --no-startup-id ~/.screenlayout/Tela.sh
 # Executa o launch do polybar para mudar o tema
 #exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
 
-## ------------------------------------------Variaveis-------------------------------------------------------- ##
+## ------------------------------------------Variaveis---------------------------------------------------- ##
 
 ## BASIC DEFINITIONS
 
@@ -27,14 +27,14 @@ exec_always --no-startup-id ~/.screenlayout/Tela.sh
 set $inner_gaps 5
 set $outer_gaps -2
 
-## ------------------------------------------Variaveis de Programas-------------------------------------------- ##
+## ------------------------------------------Variaveis de Programas--------------------------------------- ##
 
 ## APPS Variaveis!
 
 set $selectAll		focus parent
 set $anydesk		flatpak run com.anydesk.Anydesk
 set $bar		bar mode toggle
-set $dmenu 		"dmenu_run -nf '#FFFFFF' -nb '#222222' -sb '#FFFFFF' -sf '#000000' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
+set $dmenu 		"dmenu_run -nf '#FFFFFF' -nb '#000000' -sb '#FFFFFF' -sf '#000000' -fn 'monospace-10' -p 'dmenu prompt &gt;'"
 set $exit-i3wm 		"i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
 set $e-mail		flatpak run org.mozilla.Thunderbird
 set $fullscreen 	fullscreen toggle
@@ -46,6 +46,7 @@ set $kill 		kill
 set $lock 		~/.config/i3/script/lock.sh
 set $menu-rofi		"rofi -modi drun,run -show drun"
 set $restart-i3wm	restart
+set $spotify		com.spotify.Client
 set $term 		xfce4-terminal
 set $thunar 		thunar
 set $vert-horin         split toggle
@@ -57,10 +58,10 @@ set $whats		flatpak run io.github.mimbrero.WhatsAppDesktop
 ## Cores - Variaveis
 set $darker   		#080910
 set $dark     		#181920
-set $black    		#2F343F
+set $black    		#000000
 set $darkgray 		#3B4252
 set $gray     		#E7E8EB
-set $white    		#F5F6F7
+set $white    		#FFFFFF
 set $red      		#BF616A
 set $orange   		#DBAB6B
 set $yellow   		#EBCB8B
@@ -86,13 +87,11 @@ gaps outer $outer_gaps
 
 
 ## Define a cor das bordas
-
 # class                  border  backgr  text       indicator  client_border
 client.focused           $white  $black  $white     $white     $white
 client.unfocused         $white  $black  $white     $black     $black
-client.focused_inactive  $white   $dark   $white    $cyan      $dark
+client.focused_inactive  $white  $black  $white     $cyan      $black
 client.urgent            $red    $red    $white     $cyan      $red
-
 client.background        $cyan
 
 
@@ -100,9 +99,9 @@ client.background        $cyan
 
 bar {
 	position top
+	status_command i3blocks
 	#i3bar_command i3bar --transparency
-#       status_command exec
-        status_command i3blocks
+	#status_command exec
         #status_command i3status
 
         strip_workspace_numbers yes|no
@@ -115,7 +114,7 @@ bar {
 
                 focused_workspace  #FFFFFF #000000 #FFFFFF
                 active_workspace   #FFFFFF #000000 #FFFFFF
-                inactive_workspace #FFFFFF #000000 #626262
+                inactive_workspace #000000 #000000 #626262
                 urgent_workspace   #FFFFFF #000000 #FF0000
                 binding_mode       #FFFFFF #000000 #FFFFFF
 
@@ -181,7 +180,7 @@ bindsym ctrl+$alt+n exec --no-startup-id	$wallpapers
 #bindsym ctrl+$alt+p
 #bindsym ctrl+$alt+q
 #bindsym ctrl+$alt+r
-#bindsym ctrl+$alt+s
+bindsym ctrl+$alt+s exec --no-startup-id	$spotify
 bindsym ctrl+$alt+t exec --no-startup-id	$e-mail
 #bindsym ctrl+$alt+u
 #bindsym ctrl+$alt+v
@@ -309,7 +308,7 @@ assign [class="^Xfce4-terminal$"] workspace $ws1 for_window [class="^Xfce4-termi
 assign [class="^Thunar$"] 	  workspace $ws2 for_window [class="^Thunar$"] 		focus
 assign [class="^Mousepad$"] 	  workspace $ws3 for_window [class="^Mousepad$"]	focus
 assign [class="^Google-chrome$"]  workspace $ws4 for_window [class="^Google-chrome$"]	focus
-#for_window [class="spotify"] move container to workspace $ws0
+for_window [class="^Spotify$"] move container to workspace $ws9 focus
 
 bindsym $super+1 workspace $ws1
 bindsym $super+2 workspace $ws2
@@ -320,7 +319,6 @@ bindsym $super+6 workspace $ws6
 bindsym $super+7 workspace $ws7
 bindsym $super+8 workspace $ws8
 bindsym $super+9 workspace $ws9
-bindsym $super+0 workspace $ws0
 
 # move focused container to workspace
 bindsym $super+Shift+1 move container to workspace $ws1
@@ -332,7 +330,6 @@ bindsym $super+Shift+6 move container to workspace $ws6
 bindsym $super+Shift+7 move container to workspace $ws7
 bindsym $super+Shift+8 move container to workspace $ws8
 bindsym $super+Shift+9 move container to workspace $ws9
-bindsym $super+Shift+0 move container to workspace $ws0
 
 # Move to workspace with focused container
 bindsym $alt+Shift+1 move container to workspace 1; workspace $ws1
@@ -344,7 +341,6 @@ bindsym $alt+Shift+6 move container to workspace 6; workspace $ws6
 bindsym $alt+Shift+7 move container to workspace 7; workspace $ws7
 bindsym $alt+Shift+8 move container to workspace 8; workspace $ws8
 bindsym $alt+Shift+9 move container to workspace 9; workspace $ws9
-bindsym $alt+Shift+0 move container to workspace 0; workspace $ws0
 
 ## Utiliza a mesma tecla para voltar a workspace anterior
 workspace_auto_back_and_forth yes
