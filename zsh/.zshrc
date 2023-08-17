@@ -5,10 +5,10 @@
 #  ┬  ┬┌─┐┬─┐┌─┐
 #  └┐┌┘├─┤├┬┘└─┐
 #   └┘ ┴ ┴┴└─└─┘
-export VISUAL='mousepad'
+export VISUAL='Mousepad'
 export EDITOR='nano'
-export TERMINAL='xfce4-terminal'
-export BROWSER='google-chrome-stable'
+export TERMINAL='Xfce4-terminal'
+export BROWSER='Google-chrome-stable'
 #export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 
 ## Neofetch
@@ -90,7 +90,7 @@ PS1='%B%F{blue}%f%b  %B%F{magenta}%n%f%b $(dir_icon)  %B%F{red}%~%f%b${vcs_in
 #  ┴  ┴─┘└─┘└─┘┴┘└┘└─┘
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 #bindkey '^[[A' history-substring-search-up
 #bindkey '^[[B' history-substring-search-down
@@ -108,7 +108,7 @@ function xterm_title_preexec () {
 	[[ "$TERM" == 'screen'* ]] && { print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-} %# ' && print -n -- "${(q)1}\e\\"; }
 }
 
-if [[ "$TERM" == (kitty*|alacritty*|termite*|gnome*|konsole*|kterm*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
+if [[ "$TERM" == (Xfce4-terminal*|kitty*|alacritty*|termite*|gnome*|konsole*|kterm*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
 	add-zsh-hook -Uz precmd xterm_title_precmd
 	add-zsh-hook -Uz preexec xterm_title_preexec
 fi
@@ -128,8 +128,8 @@ fi
 
 #alias musica="ncmpcpp"
 
-#alias ls='lsd -a --group-directories-first'
-#alias ll='lsd -la --group-directories-first'
+alias ls='lsd -a --group-directories-first'
+alias ll='lsd -la --group-directories-first'
 
 #  ┌─┐┬ ┬┌┬┐┌─┐  ┌─┐┌┬┐┌─┐┬─┐┌┬┐
 #  ├─┤│ │ │ │ │  └─┐ │ ├─┤├┬┘ │ 
